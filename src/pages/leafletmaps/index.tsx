@@ -5,6 +5,7 @@ import {
   TileLayer, 
   GeoJSON,
   GeoJSONProps } from "react-leaflet";
+import { BPSClient } from '@ideatech-dev/ideatech-node-pkg-external'
 
 const position = {lat: 0.7893, lng: 113.9213}
 
@@ -21,6 +22,9 @@ class MapsLeaflet extends React.Component<{}, IMapsLeafletState> {
       dataGeojson: null,
       selectedProvince: "",
     }
+
+    const client = new BPSClient({appKey: '4c627cad6d55e612af7ae65f87b88a67'})
+    client.getDomain('all').then(resp => console.log(resp))    
   }
 
   componentDidMount() {
@@ -46,7 +50,7 @@ class MapsLeaflet extends React.Component<{}, IMapsLeafletState> {
             <GeoJSON 
               attribution="attribution hupla"
               data={this.state.dataGeojson}
-              style={{weight: .5, color: 'red'}}
+              style={{weight: .5, color: 'blue'}}
               eventHandlers={{
                 click: (e) => {
                   console.log(e)
